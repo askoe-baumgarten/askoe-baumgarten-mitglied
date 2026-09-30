@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e71939">
+<title>ASKÖ Baumgarten – Mitglied werden</title>
+<style>
+:root{--red:#e71939;--dark:#1a1a1a;--soft:#f7f7f8;--line:#e6e6e8;--muted:#65656a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--soft);color:var(--dark)}
+.top{background:linear-gradient(135deg,#e71939 0%,#c80f2d 100%);color:#fff;padding:28px 16px 88px}
+.brand{max-width:760px;margin:auto;display:flex;align-items:center;gap:18px}
+.logo{width:88px;height:88px;object-fit:contain;background:#fff;border-radius:18px;padding:5px;box-shadow:0 8px 24px rgba(0,0,0,.16)}
+.brand h1{font-size:clamp(28px,5vw,44px);margin:0;line-height:1}
+.brand p{margin:8px 0 0;opacity:.92;font-weight:600}
+.wrap{max-width:760px;margin:-58px auto 40px;padding:0 16px}
+.card{background:#fff;border-radius:22px;padding:24px;box-shadow:0 14px 45px rgba(31,31,35,.12);border:1px solid rgba(0,0,0,.04)}
+.intro{font-size:17px;line-height:1.5;margin:0 0 26px;color:#38383c}
+fieldset{border:0;padding:0;margin:0 0 27px}
+legend{font-size:19px;font-weight:800;margin-bottom:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.full{grid-column:1/-1}
+label.field{font-weight:700;font-size:14px;display:block}
+input[type=text],input[type=email],input[type=tel],input[type=date]{width:100%;margin-top:7px;border:1px solid #cfcfd4;border-radius:12px;padding:13px 14px;font-size:16px;background:#fff}
+input:focus{outline:3px solid rgba(231,25,57,.12);border-color:var(--red)}
+.choice{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--line);padding:14px;border-radius:14px;margin-bottom:10px;cursor:pointer}
+.choice:hover{border-color:#c6c6cb}
+.choice input{margin-top:4px;accent-color:var(--red)}
+.choice strong{display:block;font-size:15px}
+.choice small{display:block;color:var(--muted);margin-top:3px;line-height:1.4}
+.privacy{background:#fafafa;border:1px solid var(--line);padding:14px;border-radius:12px;font-size:14px;color:#4d4d52;line-height:1.5}
+.check{display:flex;gap:11px;align-items:flex-start;margin-top:13px;font-size:14px;line-height:1.45}
+.check input{margin-top:4px;accent-color:var(--red)}
+.req{color:var(--red)}
+button{width:100%;border:0;border-radius:14px;background:var(--red);color:#fff;padding:16px;font-size:17px;font-weight:850;cursor:pointer;box-shadow:0 7px 18px rgba(231,25,57,.22)}
+button:hover{filter:brightness(.94)}
+button:disabled{opacity:.6;cursor:not-allowed}
+.status{display:none;margin-top:14px;border-radius:12px;padding:13px 14px;font-weight:650;font-size:14px}
+.ok{display:block;background:#ecf8f0;color:#176035;border:1px solid #bee1c9}
+.err{display:block;background:#fff0f2;color:#9c1930;border:1px solid #f3c0ca}
+.meta{text-align:center;color:#77777d;font-size:12px;margin:18px 0 0}
+@media(max-width:640px){.grid{grid-template-columns:1fr}.full{grid-column:auto}.brand{align-items:flex-start}.logo{width:74px;height:74px}.card{padding:19px}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <img class="logo" src="https://images.seeklogo.com/logo-png/1/1/ask-baumgarten-logo-png_seeklogo-11931.png" alt="ASK Baumgarten Vereinslogo" onerror="this.style.display='none'">
+    <div><h1>ASKÖ Baumgarten</h1><p>Mitgliedsantrag 2026</p></div>
+  </div>
+</header>
+
+<main class="wrap">
+<form id="memberForm" class="card">
+<p class="intro">Schön, dass du Teil unseres Vereins werden möchtest. Fülle den Antrag aus und sende ihn direkt an ASKÖ Baumgarten.</p>
+
+<fieldset>
+<legend>1. Mitgliedschaft</legend>
+<label class="choice"><input type="radio" name="mitgliedschaft" value="Ordentliches Mitglied" required>
+<span><strong>Ordentliches Mitglied – 50 € / Jahr</strong><small>Mitgliedskarte und Wahlrecht in der Mitgliederversammlung</small></span></label>
+<label class="choice"><input type="radio" name="mitgliedschaft" value="VIP-Mitglied" required>
+<span><strong>VIP-Mitglied – 200 € / Jahr</strong><small>Mitgliedskarte, Wahlrecht und freier Eintritt bei Heimspielen</small></span></label>
+</fieldset>
+
+<fieldset>
+<legend>2. Persönliche Daten</legend>
+<div class="grid">
+<label class="field">Vorname <span class="req">*</span><input name="vorname" type="text" autocomplete="given-name" required></label>
+<label class="field">Nachname <span class="req">*</span><input name="nachname" type="text" autocomplete="family-name" required></label>
+<label class="field full">Straße / Hausnummer<input name="adresse" type="text" autocomplete="street-address"></label>
+<label class="field">PLZ <span class="req">*</span><input name="plz" type="text" inputmode="numeric" autocomplete="postal-code" required></label>
+<label class="field">Wohnort <span class="req">*</span><input name="wohnort" type="text" autocomplete="address-level2" required></label>
+<label class="field">Geburtsdatum<input name="geburtsdatum" type="date"></label>
+<label class="field">Telefon<input name="telefon" type="tel" autocomplete="tel"></label>
+<label class="field full">E-Mail <span class="req">*</span><input name="email" type="email" autocomplete="email" required></label>
+</div>
+</fieldset>
+
+<fieldset>
+<legend>3. Zahlungsart</legend>
+<label class="choice"><input type="radio" name="zahlung" value="Überweisung" required>
+<span><strong>Ich überweise selbstständig</strong><small>IBAN: AT79 5100 0810 1565 0700</small></span></label>
+<label class="choice"><input type="radio" name="zahlung" value="Persönliche Übergabe" required>
+<span><strong>Persönliche Übergabe</strong><small>Ich übergebe den Mitgliedsbeitrag einem Vorstandsmitglied.</small></span></label>
+</fieldset>
+
+<fieldset>
+<legend>4. Datenschutz</legend>
+<div class="privacy">Die angegebenen Daten werden ausschließlich zur Mitgliederverwaltung und Vereinsorganisation verwendet und nicht an Dritte weitergegeben. Schriftverkehr kann über die angegebene E-Mail-Adresse, SMS, postalisch oder über Vereins-Social-Media-Gruppen erfolgen.</div>
+<label class="check"><input type="checkbox" name="datenschutz" value="akzeptiert" required><span>Ich habe den Datenschutzhinweis gelesen und stimme der Verarbeitung meiner Angaben für die Mitgliederverwaltung und Vereinsorganisation zu. <span class="req">*</span></span></label>
+</fieldset>
+
+<button id="submitBtn" type="submit">Jetzt Mitglied werden</button>
+<div id="status" class="status" role="status" aria-live="polite"></div>
+<p class="meta">ASKÖ Baumgarten · 7021 Baumgarten · Franz Kovacsich-Platz</p>
+</form>
+</main>
+
+<script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw6PKQOq3nGw90O5af6YEzsPY52OZGgmHaUXKqX4H-5LfJitkIteP9NgAhB9K0wn4g6Pw/exec";
+const form=document.getElementById("memberForm"), statusBox=document.getElementById("status"), submitBtn=document.getElementById("submitBtn");
+form.addEventListener("submit",async e=>{
+ e.preventDefault(); statusBox.className="status"; statusBox.textContent="";
+ if(!form.reportValidity())return;
+ if(APPS_SCRIPT_URL.includes("DEINE_GOOGLE")){statusBox.className="status err";statusBox.textContent="Die Google-Sheets-Anbindung ist noch nicht eingerichtet. Siehe README.txt.";return;}
+ const data=Object.fromEntries(new FormData(form).entries()); data.zeitpunkt=new Date().toISOString();
+ submitBtn.disabled=true;submitBtn.textContent="Wird gesendet …";
+ try{
+   const response=await fetch(APPS_SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)});
+   const result=await response.json(); if(!result.ok) throw new Error(result.error||"Fehler");
+   form.reset();statusBox.className="status ok";statusBox.textContent="Vielen Dank! Dein Mitgliedsantrag wurde erfolgreich an ASKÖ Baumgarten übermittelt.";
+ }catch(err){console.error(err);statusBox.className="status err";statusBox.textContent="Der Antrag konnte nicht gesendet werden. Bitte versuche es erneut.";}
+ finally{submitBtn.disabled=false;submitBtn.textContent="Jetzt Mitglied werden";}
+});
+</script>
+</body></html>
