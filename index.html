@@ -33,7 +33,7 @@ button{border:0;border-radius:11px;background:var(--red);color:#fff;font-weight:
 </div>
 <h2>1. Mitgliedschaft</h2>
 <label class="choice"><input type="radio" name="mitgliedschaft" value="Ordentliches Mitglied" required> <strong>Ordentliches Mitglied</strong><br><span class="price">50 € / Jahr</span><br><small>Mitgliedskarte und Wahlrecht in der Mitgliederversammlung</small></label>
-<label class="choice"><input type="radio" name="mitgliedschaft" value="VIP-Mitglied" required> <strong>VIP-Mitglied</strong><br><span class="price">200 € / Jahr</span><br><small class="vip">Mitgliedskarte, Wahlrecht und freier Eintritt bei Heimspielen</small></label>
+<label class="choice"><input type="radio" name="mitgliedschaft" value="VIP-Mitglied" required> <strong>VIP-Mitglied</strong><br><span class="price">200 € / Jahr</span><br><small class="vip">Mitgliedskarte, Wahlrecht und freier Eintritt bei Heimspielen für die Saison 2026/27</small></label>
 <p class="hint">Der jährliche Mitgliedsbeitrag wird bei der Mitgliederversammlung festgelegt.</p>
 
 <h2>2. Persönliche Daten</h2>
@@ -52,46 +52,120 @@ button{border:0;border-radius:11px;background:var(--red);color:#fff;font-weight:
 
 <h2>3. Zahlung</h2>
 <label class="choice"><input type="radio" name="zahlung" value="Überweisung" required> Ich überweise den Mitgliedsbeitrag selbstständig.</label>
-<div id="transferInfo" class="payment-info hidden"><strong>IBAN: AT79 5100 0810 1565 0700</strong><br><button type="button" class="copy-btn" id="copyIban">IBAN kopieren</button> <small id="copyMsg"></small></div>
+<div id="transferInfo" class="payment-info hidden"><strong>Empfänger: ASKÖ Baumgarten</strong><br><strong>IBAN: AT79 5100 0810 1565 0700</strong>
+<br><span>Verwendungszweck: <strong id="transferReference">Mitgliedsbeitrag 2026 – Vorname Nachname</strong></span><br>
+<button type="button" class="copy-btn" id="copyReference">Verwendungszweck kopieren</button><br><button type="button" class="copy-btn" id="copyIban">IBAN kopieren</button> <small id="copyMsg"></small></div>
 <label class="choice"><input type="radio" name="zahlung" value="Persönliche Übergabe" required> Ich übergebe den Betrag einem Vorstandsmitglied persönlich.</label>
 
 <h2>4. Datenschutz & Kommunikation</h2>
-<p class="hint">Die angegebenen Daten werden zur Bearbeitung des Mitgliedsantrags sowie zur Mitgliederverwaltung und Vereinsorganisation verarbeitet. Weitere Informationen zur Datenverarbeitung sollten in einer gesonderten Datenschutzerklärung des Vereins bereitgestellt werden.</p>
-<label class="check"><input type="checkbox" name="datenschutz" value="Akzeptiert" required><span>Ich bestätige, dass meine Angaben zur Bearbeitung meines Mitgliedsantrags und zur Mitgliederverwaltung verarbeitet werden dürfen. *</span></label>
+<p class="hint">Deine Daten werden zur Bearbeitung des Mitgliedsantrags und zur Vereinsverwaltung verarbeitet. Bitte lies vor dem Absenden unsere <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzhinweise</a>.</p>
+<label class="check"><input type="checkbox" name="datenschutz" value="Akzeptiert" required><span>Ich habe die <a href="datenschutz.html" target="_blank" rel="noopener">Datenschutzhinweise</a> zur Kenntnis genommen. *</span></label>
 <p class="hint"><strong>Optionale Kommunikation:</strong></p>
 <label class="check"><input type="checkbox" name="kontakt_email" value="Ja"><span>Ich möchte Vereinsinformationen per E-Mail erhalten.</span></label>
 <label class="check"><input type="checkbox" name="kontakt_sms" value="Ja"><span>Ich möchte Vereinsinformationen per SMS erhalten.</span></label>
 <label class="check"><input type="checkbox" name="kontakt_social" value="Ja"><span>Ich möchte – sofern angeboten – über Vereins-Social-Media-Gruppen informiert werden.</span></label>
 
-<button id="submitBtn" type="submit">Jetzt Mitglied werden</button><div id="status" class="status"></div>
+<button id="submitBtn" type="submit">Mitgliedsantrag absenden</button><div id="status" class="status"></div>
 <p class="meta">ASKÖ Baumgarten · Mitgliedsantrag 2026</p>
 </div>
 
 <section id="successScreen" class="success hidden">
-<div class="success-icon">✓</div><h1>Willkommen bei ASKÖ Baumgarten!</h1>
-<p>Dein Mitgliedsantrag wurde erfolgreich übermittelt.</p>
-<div class="summary"><div><span>Mitgliedschaft</span><strong id="sumMembership"></strong></div><div><span>Mitgliedsbeitrag</span><strong id="sumFee"></strong></div><div><span>Zahlungsart</span><strong id="sumPayment"></strong></div></div>
-<p id="successPayment"></p><p id="successMail" class="hint"></p>
+<div class="success-icon">✓</div><h1>Vielen Dank für deinen Mitgliedsantrag!</h1>
+<p>Vielen Dank! Dein Mitgliedsantrag wurde erfolgreich übermittelt.</p>
+<div class="summary"><div><span>Mitgliedsnummer</span><strong id="sumNumber"></strong></div><div><span>Mitgliedschaft</span><strong id="sumMembership"></strong></div><div><span>Mitgliedsbeitrag</span><strong id="sumFee"></strong></div><div><span>Zahlungsart</span><strong id="sumPayment"></strong></div></div>
+<div id="successPayment"></div>
+<div class="payment-info hidden" id="successTransfer">
+<div><strong>Empfänger:</strong> ASKÖ Baumgarten</div>
+<div><strong>IBAN:</strong> AT79 5100 0810 1565 0700</div>
+<div><strong>Verwendungszweck:</strong> <span id="successReference"></span></div>
+<button type="button" class="copy-btn" id="successCopyIban">IBAN kopieren</button>
+<button type="button" class="copy-btn" id="successCopyReference">Verwendungszweck kopieren</button>
+<small id="successCopyStatus" aria-live="polite"></small>
+</div>
+<p class="hint">Dein Antrag ist eingegangen und wird vom Verein bearbeitet. Die Aufnahme wird gegebenenfalls gesondert bestätigt.</p>
 </section>
 </form></div>
 
 <script>
-const APPS_SCRIPT_URL="https://script.google.com/macros/s/AKfycbzw805xqhyVU42WSWMWG6OlaLNV1gv4hl1vWy77ffPr_WnNs-VNZP4sJbGxKxlotegi/exec";
-const form=document.getElementById("memberForm"), content=document.getElementById("formContent"), success=document.getElementById("successScreen");
-document.querySelectorAll('input[name="zahlung"]').forEach(r=>r.addEventListener("change",()=>document.getElementById("transferInfo").classList.toggle("hidden",r.value!=="Überweisung")));
-document.getElementById("copyIban").addEventListener("click",async()=>{try{await navigator.clipboard.writeText("AT795100081015650700");document.getElementById("copyMsg").textContent="Kopiert ✓";}catch(e){document.getElementById("copyMsg").textContent="AT79 5100 0810 1565 0700";}});
-form.addEventListener("submit",async e=>{
- e.preventDefault(); const status=document.getElementById("status"),btn=document.getElementById("submitBtn");
- const tel=document.getElementById("telefon").value.trim(), mail=document.getElementById("email").value.trim();
- if(!tel&&!mail){status.className="status err";status.textContent="Bitte gib mindestens eine Telefonnummer oder E-Mail-Adresse an.";document.getElementById("telefon").focus();return;}
- if(!form.reportValidity())return;
- const data=Object.fromEntries(new FormData(form).entries());
- btn.disabled=true;btn.textContent="Wird gesendet …";status.textContent="";
- try{const r=await fetch(APPS_SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(data)});const result=await r.json();if(!result.ok)throw new Error(result.error||"Fehler");
- document.getElementById("sumMembership").textContent=data.mitgliedschaft;document.getElementById("sumFee").textContent=data.mitgliedschaft==="VIP-Mitglied"?"200 € / Jahr":"50 € / Jahr";document.getElementById("sumPayment").textContent=data.zahlung;
- document.getElementById("successPayment").innerHTML=data.zahlung==="Überweisung"?'Bitte überweise den Beitrag auf <strong>IBAN AT79 5100 0810 1565 0700</strong>.':'Bitte übergib den Beitrag wie ausgewählt einem Vorstandsmitglied.';
- document.getElementById("successMail").textContent=mail?"Eine Bestätigungs-E-Mail wurde an "+mail+" gesendet.":"Da keine E-Mail-Adresse angegeben wurde, wurde keine Bestätigungs-E-Mail versendet.";
- content.classList.add("hidden");success.classList.remove("hidden");window.scrollTo({top:0,behavior:"smooth"});
- }catch(err){status.className="status err";status.textContent="Der Antrag konnte nicht gesendet werden. Bitte versuche es erneut.";}finally{btn.disabled=false;btn.textContent="Jetzt Mitglied werden";}
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzw805xqhyVU42WSWMWG6OlaLNV1gv4hl1vWy77ffPr_WnNs-VNZP4sJbGxKxlotegi/exec";
+const IBAN = "AT795100081015650700";
+const form = document.getElementById("memberForm");
+const content = document.getElementById("formContent");
+const success = document.getElementById("successScreen");
+const $ = id => document.getElementById(id);
+function referenceText() {
+  const first = form.elements["vorname"].value.trim();
+  const last = form.elements["nachname"].value.trim();
+  return "Mitgliedsbeitrag 2026 – " + ([first,last].filter(Boolean).join(" ") || "Vorname Nachname");
+}
+async function copyValue(value, feedbackId) {
+  try {
+    await navigator.clipboard.writeText(value);
+    $(feedbackId).textContent = "Kopiert ✓";
+  } catch (_) {
+    $(feedbackId).textContent = "Bitte manuell kopieren: " + value;
+  }
+}
+function updateReference() { $("transferReference").textContent = referenceText(); }
+["vorname","nachname"].forEach(n => form.elements[n].addEventListener("input", updateReference));
+document.querySelectorAll('input[name="zahlung"]').forEach(r => r.addEventListener("change", () => {
+  $("transferInfo").classList.toggle("hidden", form.elements["zahlung"].value !== "Überweisung");
+}));
+$("copyIban").addEventListener("click", () => copyValue(IBAN, "copyMsg"));
+$("copyReference").addEventListener("click", () => copyValue(referenceText(), "copyMsg"));
+$("successCopyIban").addEventListener("click", () => copyValue(IBAN, "successCopyStatus"));
+$("successCopyReference").addEventListener("click", () => copyValue($("successReference").textContent, "successCopyStatus"));
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+  const status = $("status"), btn = $("submitBtn");
+  const tel = $("telefon").value.trim(), mail = $("email").value.trim();
+  if (!tel && !mail) {
+    status.className = "status err";
+    status.textContent = "Bitte gib mindestens eine Telefonnummer oder E-Mail-Adresse an.";
+    $("telefon").focus();
+    return;
+  }
+  if (!form.reportValidity()) return;
+  const birthday = form.elements["geburtsdatum"].value;
+  if (birthday > new Date().toISOString().slice(0,10)) {
+    status.className = "status err";
+    status.textContent = "Das Geburtsdatum darf nicht in der Zukunft liegen.";
+    return;
+  }
+  const data = Object.fromEntries(new FormData(form).entries());
+  if (!mail) delete data.kontakt_email;
+  if (!tel) delete data.kontakt_sms;
+  btn.disabled = true;
+  btn.textContent = "Wird gesendet …";
+  status.textContent = "";
+  try {
+    const response = await fetch(APPS_SCRIPT_URL, {
+      method:"POST",
+      headers:{"Content-Type":"text/plain;charset=utf-8"},
+      body:JSON.stringify(data)
+    });
+    const result = await response.json();
+    if (!result.ok) throw new Error(result.error || "Fehler beim Speichern");
+    $("sumNumber").textContent = result.memberNo || "–";
+    $("sumMembership").textContent = data.mitgliedschaft;
+    $("sumFee").textContent = data.mitgliedschaft === "VIP-Mitglied" ? "200 € / Jahr" : "50 € / Jahr";
+    $("sumPayment").textContent = data.zahlung;
+    const transfer = data.zahlung === "Überweisung";
+    $("successPayment").textContent = transfer
+      ? "Bitte überweise den Mitgliedsbeitrag mit folgenden Zahlungsdaten:"
+      : "Bitte übergib den Mitgliedsbeitrag wie ausgewählt einem Vorstandsmitglied.";
+    $("successTransfer").classList.toggle("hidden", !transfer);
+    $("successReference").textContent = referenceText();
+    content.classList.add("hidden");
+    success.classList.remove("hidden");
+    window.scrollTo({top:0,behavior:"smooth"});
+  } catch(error) {
+    console.error(error);
+    status.className = "status err";
+    status.textContent = "Der Antrag konnte nicht gesendet werden. Bitte versuche es erneut.";
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Mitgliedsantrag absenden";
+  }
 });
 </script></body></html>
